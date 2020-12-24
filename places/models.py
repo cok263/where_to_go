@@ -10,3 +10,17 @@ class Place(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Image(models.Model):
+    image = models.ImageField('Изображение проекта', upload_to='images', null=True, blank=True)
+    place = models.ForeignKey(
+        'Place',
+        related_name = 'imgs',
+        on_delete=models.CASCADE,
+        blank=True, null=True,
+    )
+
+
+    def __str__(self):
+        return '{} {}'.format(self.id, self.place.title)

@@ -18,7 +18,7 @@ class Image(models.Model):
         'Place',
         related_name = 'imgs',
         on_delete=models.CASCADE,
-        blank=True, null=True,
+        null=True,
     )
 
 

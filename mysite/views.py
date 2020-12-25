@@ -1,41 +1,33 @@
 from django.http import HttpResponse
 from django.template import loader
 
+from places.models import *
+
 
 def show_where_to_go(request):
+    places = Place.objects.all()
 
-    places = {
-	    "type": "FeatureCollection",
-	    "features": [
-	    	{
-          		"type": "Feature",
-          		"geometry": {
-           			"type": "Point",
-            		"coordinates": [37.62, 55.793676]
-          		},
-          		"properties": {
-            	"title": "«Легенды Москвы",
-            	"placeId": "moscow_legends",
-            	"detailsUrl": "./places/moscow_legends.json"
-          		}
-        	},
-        	{
-          		"type": "Feature",
-          		"geometry": {
-            		"type": "Point",
-            		"coordinates": [37.64, 55.753676]
-          		},
-          		"properties": {
-            		"title": "Крыши24.рф",
-            		"placeId": "roofs24",
-            		"detailsUrl": "./places/roofs24.json"
-          		}
-        	}
-      	]
+    features = {
+        "type": "FeatureCollection",
+        "features": [],
     }
 
+    for place in places:
+        feature = {"type": "Feature",}
+        
+        feature["geometry"] = {
+            "type": "Point",
+            "coordinates": [ place.lng, place.lat ],
+        }
+        feature["properties"] = {
+            "title": place.title,
+            "placeId": place.id,
+            "detailsUrl": "./places/file.json",
+        }
+        features["features"].append(feature)
+        
     data = {
-    	"places": places,
+        "places": features,
     }
 
     template = loader.get_template('index.html')

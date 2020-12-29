@@ -9,7 +9,7 @@ class Place(models.Model):
     lng = models.FloatField('Долгота')
 
     def __str__(self):
-        return self.title
+        return "{} {}".format(self.id, self.title)
 
 
 class Image(models.Model):

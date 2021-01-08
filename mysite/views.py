@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.template import loader
+from django.urls import reverse
 
 from places.models import *
 
@@ -22,7 +23,7 @@ def show_where_to_go(request):
         feature["properties"] = {
             "title": place.title,
             "placeId": place.id,
-            "detailsUrl": "./places/file.json",
+            "detailsUrl": reverse("place_info", args=[place.id,]),
         }
         features["features"].append(feature)
         

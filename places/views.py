@@ -16,6 +16,9 @@ def show_place(request, id=1):
         "coordinates": {"lat": place.lat, "lng": place.lng},
     }
     response = JsonResponse(data, safe=False,
-                            json_dumps_params={'ensure_ascii': False})
+                            json_dumps_params={
+                                'ensure_ascii': False,
+                                'indent': 4,
+                            })
 
     return response

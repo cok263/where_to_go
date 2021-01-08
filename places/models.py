@@ -13,7 +13,8 @@ class Place(models.Model):
 
 
 class Image(models.Model):
-    image = models.ImageField('Изображение проекта', upload_to='images', null=True, blank=True)
+    image = models.ImageField('Изображение проекта', upload_to='images')
+    id = models.IntegerField('Позиция', primary_key=True, blank=True, db_index=True)
     place = models.ForeignKey(
         'Place',
         related_name = 'imgs',

@@ -13,14 +13,19 @@ class Place(models.Model):
 
 
 class Image(models.Model):
-    image = models.ImageField('Изображение проекта', upload_to='images')
-    id = models.IntegerField('Позиция', primary_key=True, blank=True, db_index=True)
+    image = models.ImageField('Изображение проекта', upload_to='images', null=True)
+    id = models.PositiveIntegerField('Позиция', default=0, primary_key=True, blank=True, db_index=True)
+    number = models.PositiveIntegerField(default=0)
     place = models.ForeignKey(
         'Place',
         related_name = 'imgs',
         on_delete=models.CASCADE,
         null=True,
     )
+
+
+    class Meta:
+        ordering = ['number']
 
 
     def __str__(self):

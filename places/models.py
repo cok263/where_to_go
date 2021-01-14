@@ -8,13 +8,16 @@ class Place(models.Model):
     lat = models.FloatField('Широта')
     lng = models.FloatField('Долгота')
 
+    class Meta:
+        verbose_name = 'Место'
+        verbose_name_plural = 'Места'
+
     def __str__(self):
         return "{} {}".format(self.id, self.title)
 
 
 class Image(models.Model):
     image = models.ImageField('Изображение проекта', upload_to='images', null=True)
-    id = models.PositiveIntegerField('Позиция', default=0, primary_key=True, blank=True, db_index=True)
     number = models.PositiveIntegerField(default=0)
     place = models.ForeignKey(
         'Place',
@@ -23,9 +26,10 @@ class Image(models.Model):
         null=True,
     )
 
-
     class Meta:
         ordering = ['number']
+        verbose_name = 'Изображение'
+        verbose_name_plural = 'Изображения'
 
 
     def __str__(self):

@@ -13,7 +13,6 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     fields = [
         'image', 
         'get_preview',
-        'id',
     ]
     readonly_fields = [
         'get_preview',
@@ -23,8 +22,8 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
         if obj.image is None:
             return 'Изображение отсутствует'
 
-        width = img.width
-        height = img.height
+        width = obj.image.width
+        height = obj.image.height
 
         scale = height / MAX_PREVIEW_HEIGHT
         if scale > 1:

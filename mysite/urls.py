@@ -20,10 +20,12 @@ from django.conf.urls.static import static
 
 from mysite import views
 from places import views as views_places
+from django.urls import include, path
 
 
 urlpatterns = [
     path('', views.show_where_to_go),
     path('admin/', admin.site.urls),
     path('places/<int:id>/', views_places.show_place, name='place_info'),
+    path('tinymce/', include('tinymce.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

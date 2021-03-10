@@ -1,4 +1,4 @@
-"""mysite URL Configuration
+"""where_to_go URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -18,7 +18,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from mysite import views
+from where_to_go import views
 from places import views as views_places
 from django.urls import include, path
 
